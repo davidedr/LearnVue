@@ -10,10 +10,10 @@
         <div class="nav-bar"></div>
         <div id="app">
             <div class="cart">
-                <p>Cart({{cart}})</p>
+                <p>Cart({{cart.length}})</p>
             </div>
-            <product :premium="premium"></product>
-            <product></product>
+            <product :premium="premium" @event-add-to-cart="add_to_cart" @event-remove-from-cart="remove_from_cart"></product>
+            <product :premium="premium" @event-add-to-cart="add_to_cart" @event-remove-from-cart="remove_from_cart"></product>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script src="js/intro.js"></script>

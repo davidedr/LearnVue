@@ -1,3 +1,5 @@
+Vue.config.devtools = true
+
 Vue.component('product-sizes-list', {
     props: {
         sizes: {
@@ -101,7 +103,6 @@ Vue.component('product', {
             alt_text: 'A pair of socks',
             description: 'A pair of warm, fuzzy socks',
             link: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks',
-            inventory: 100,
             on_sale: true,
             details: ["80% cotton", "20% polyester", "Gender neutral"],
             variants: [
@@ -113,14 +114,14 @@ Vue.component('product', {
     },
     methods: {
         addToCart() {
-            this.cart +=1
+            this.$emit('event-add-to-cart', this.variants[this.selected_variant].variant_id)
+        },
+        removeFromCart() {
+            this.$emit('event-remove-from-cart', this.variants[this.selected_variant].variant_id)
         },
         updateProduct(index) {
             this.selected_variant = index
             console.log(index)
-        },
-        removeFromCart() {
-            this.cart -= 1
         }
     },
     computed: {
@@ -158,6 +159,18 @@ var app=new Vue({
     el: '#app',
     data: {
         premium: true,
-        cart: 0
+        cart: []
+    },
+    methods: {
+        add_to_cart(id) {
+            this.cart.push(id)
+        },
+        remove_from_cart(id) {
+            for(var i=0; i < this.cart.length; i++)
+                if (this.cart[i] == id) {
+                    this.cart.splice(i, 1)
+                    break
+                }
+        }
     }
 })
