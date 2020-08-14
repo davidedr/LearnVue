@@ -1,3 +1,17 @@
+Vue.component('product-details', {
+    props: {
+        details: {
+            type: Array,
+            required: true
+        }
+    },
+    template: `
+        <ul>
+            <li v-for="detail in details">{{detail}}</li>
+        </ul>
+    `
+})
+
 Vue.component('product', {
     props: {
         premium: {
@@ -45,9 +59,7 @@ Vue.component('product', {
                 <p @mouseover="updateProduct(index)">{{variant.variant_id}} - {{variant.variant_color}}</p>
             </div>
 
-            <ul>
-                <li v-for="detail in details">{{detail}}</li>
-            </ul>
+            <product-details :details="details"></product-details>
 
             <span v-show="on_sale">On sale!</span>
             <p>{{sale}}</p>
