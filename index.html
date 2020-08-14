@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Learn Vue.js</title>
+        <link rel="stylesheet" type="text/css" href="./css/reset.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="https://unpkg.com/vue"></script>        
+    </head>
+    <body>
+        <div id="app">
+            <script>var app=new Vue({ef: '#app', data:{message: 'Hello World!'}})</script>            
+            {{message}}
+            <h1>The Vue View</h1>
+            <div class="user">
+                <div class="user-information">
+                    <div class="image-container">
+                        <img src="https://s3.amazonaws.com/codecademy-content/courses/what-is-vue/profile.jpeg" alt="Profile picture">
+                    </div>
+                    <h3>Coder in training</h3>
+                </div>
+                <div class="user-bio">
+                    <em>Bio: </em> Excited future se.
+                </div>
+            </div>
+            <div class="tweets">
+                <div class="tweet">
+                    <h3>Coder in training</h3>
+                    <p>Started learning Vue today</p>
+                </div>
+                <div class="tweet">
+                    <h3>Coder in training</h3>
+                    <p>Okay, I learned HTML, CSS, and JavaScript. But, how do I combine them together?? Send help.</p>
+                </div>
+                <div class="tweet">
+                    <h3>Coder in training</h3>
+                    <p>Today I start learning Vue. I got this.</p>
+                </div>
+            </div>
+            <div class="settings">
+                <h2>Settings</h2>
+                <label for="username">Username</label>
+                <input type="text" value="username" placeholder="Username"/>
+                <label for="bio">Bio</label>
+                <textarea value="bio" placeholder="Bio"></textarea>
+                <label for="tweet">New Tweet</label>
+                <div class="new-tweet">
+                    <input type="text" value="tweet" placeholder="New tweet"/>
+                    <button>Add Tweet</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
