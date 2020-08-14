@@ -1,3 +1,18 @@
+Vue.component('product-sizes-list', {
+    props: {
+        sizes: {
+            type: Array,
+            required: true
+
+        }
+    },
+    template: `
+        <ul>
+            <li v-for="size in sizes">{{size}}</li>
+        </ul>
+    `
+})
+
 Vue.component('product-details', {
     props: {
         details: {
@@ -28,22 +43,17 @@ Vue.component('product', {
         <div class="product-info">
             <h1>Product goes here</h1>
 
-            <div class="cart">
-                <p>Cart({{cart}})</p>
-                <button v-on:click="addToCart"
-                    :disabled="!in_stock"
-                    :class="{disabledButton: !in_stock}">Add to cart</button>
+            <button v-on:click="addToCart"
+            :disabled="!in_stock"
+            :class="{disabledButton: !in_stock}">Add to cart</button>
 
-                <button @click="removeFromCart"
-                :disabled="!in_stock"
-                :class="{disabledButton: !in_stock}">Remove from cart</button>
-            </div>
+            <button @click="removeFromCart"
+            :disabled="!in_stock"
+            :class="{disabledButton: !in_stock}">Remove from cart</button>
 
             <div class="sizes-list">
-                <ul>
-                    <li v-for="size in sizes">{{ size}}</li>
-                </ul>
-            </div>
+                <product-sizes-list :sizes="sizes"></product-sizes-list>
+            </idv>
 
             Mouse over the color box to change the image accordingly
             <div v-for="(variant, index) in variants"
@@ -98,8 +108,7 @@ Vue.component('product', {
                 {variant_id: 2234, variant_color: "green", variant_image: "assets/vm-socks-green.png", variant_quantity: 100},
                 {variant_id: 2235, variant_color: "blue", variant_image: "assets/vm-socks-blue.png", variant_quantity: 0}
             ],
-            sizes: ["M", "S", "XL", "XXL" ],
-            cart: 0
+            sizes: ["M", "S", "XL", "XXL" ]
         }
     },
     methods: {
@@ -148,6 +157,7 @@ Vue.component('product', {
 var app=new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: 0
     }
 })
