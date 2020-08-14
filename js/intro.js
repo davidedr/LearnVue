@@ -101,6 +101,7 @@ Vue.component('product', {
                     <p>Name: {{ review.name }}</p>
                     <p>Rating: {{ review.rating }}</p>
                     <p>Review: {{ review.review }}</p>
+                    <p>Recommend: {{ review.recommend }}</p>
                 </li>
             </ul>
         </div>
@@ -203,6 +204,11 @@ Vue.component('product-review', {
             </p>
 
             <p>
+                <label for="recommend">Would you recommend this product?</label>
+                <input type="checkbox" id="recommend"  v-model="recommend">
+            </p>
+
+            <p>
                 <input type="submit" value="Submit">
             </p>
         </form>
@@ -212,6 +218,7 @@ Vue.component('product-review', {
             name:null,
             review: null,
             rating: null,
+            recommend: null,
             errors: []
         }
     },
@@ -222,12 +229,14 @@ Vue.component('product-review', {
                 let product_review={
                     name: this.name,
                     review: this.review,
-                    rating: this.rating
+                    rating: this.rating,
+                    recommend: this.recommend
                 }
                 this.$emit("product-review-submitted", product_review)
                 this.name=null
                 this.review=null
                 this.rating=null
+                this.recommend=false
     
             }
             else {
