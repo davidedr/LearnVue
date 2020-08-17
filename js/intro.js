@@ -1,5 +1,52 @@
 Vue.config.devtools = true
 
+Vue.component('product-tabs', {
+    props: {
+        reviews: {
+            type: Array,
+            required: true
+        }
+    },
+    template: `
+         <div>
+            <div>
+                <span class="tab"
+                    :class="{ activeTab: selected_tab === tab }"
+                    v-for="(tab, index) in tabs"
+                        :key="index"
+                    @click="selected_tab = tab">
+                    {{ tab }}
+                </span>
+            </div>                
+            <div v-show="selected_tab==='Reviews'">
+                <h2>Product reviews</h2>
+                <p v-if="!reviews.length">There are no reviews, yet</p>
+                <ul v-else>
+                    <li v-for="review in reviews">
+                        <p>Name: {{ review.name }}</p>
+                        <p>Rating: {{ review.rating }}</p>
+                        <p>Review: {{ review.review }}</p>
+                        <p>Recommend: {{ review.recommend }}</p>
+                    </li> 
+                </ul>
+            </div>
+            <div v-show="selected_tab==='Write a review'">	
+                <product-review @product-review-submitted="addReview"></product-review>        
+            </div>
+        </div>
+    `,
+    data() {
+        return {
+            tabs: ['Reviews', 'Write a review'],
+            selected_tab: 'Reviews'
+        }
+    },
+    methods: {
+        addReview() {
+
+        }
+    }
+})
 Vue.component('product-sizes-list', {
     props: {
         sizes: {
@@ -93,19 +140,8 @@ Vue.component('product', {
             <h1> {{title}}</h1>
             <p> {{description }}</p>
         </div>
-        <div>
-            <h2>Product reviews</h2>
-            <p v-if="!reviews.length">There are no reviews, yet</p>
-            <ul>
-                <li v-for="review in reviews">
-                    <p>Name: {{ review.name }}</p>
-                    <p>Rating: {{ review.rating }}</p>
-                    <p>Review: {{ review.review }}</p>
-                    <p>Recommend: {{ review.recommend }}</p>
-                </li>
-            </ul>
-        </div>
-        <product-review @product-review-submitted="addReview"></product-review>
+        <product-tabs :reviews="reviews"></product-tabs>
+
     </div>
     `,
     data() {
