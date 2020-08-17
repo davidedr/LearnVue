@@ -1,5 +1,41 @@
 Vue.config.devtools = true
 
+Vue.component('shipping-details-tabs', {
+    props: {
+        shipping: {
+            type: String,
+            required: true
+        },
+        details: {
+            type: Array,
+            required: true
+        }
+    },
+    template: `
+        <div>
+            <span class="tab"
+                :class="{ activeTab: selected_tab === tab }"
+                v-for="(tab, index) in tabs"
+                :key="tab"
+                @click="selected_tab = tab">
+                {{tab}}
+            </span>
+            <div v-show="selected_tab==='Shipping'">
+                <p>Shipping: {{shipping}} </p>
+            </div>
+            <div v-show="selected_tab==='Info'">
+                <product-details :details="details"></product-details>
+            </div>
+        </div>
+    `,
+    data() {
+        return {
+            tabs: ['Shipping', 'Info'],
+            selected_tab: 'Shipping'
+        }
+    }
+})
+
 var event_bus = new Vue()
 
 Vue.component('product-tabs', {
@@ -11,15 +47,13 @@ Vue.component('product-tabs', {
     },
     template: `
          <div>
-            <div>
-                <span class="tab"
-                    :class="{ activeTab: selected_tab === tab }"
-                    v-for="(tab, index) in tabs"
-                        :key="index"
-                    @click="selected_tab = tab">
-                    {{ tab }}
-                </span>
-            </div>                
+            <span class="tab"
+                :class="{ activeTab: selected_tab === tab }"
+                v-for="(tab, index) in tabs"
+                :key="tab"
+                @click="selected_tab = tab">
+                {{ tab }}
+            </span>
             <div v-show="selected_tab==='Reviews'">
                 <h2>Product reviews</h2>
                 <p v-if="!reviews.length">There are no reviews, yet</p>
@@ -45,7 +79,6 @@ Vue.component('product-tabs', {
     },
     methods: {
         addReview() {
-
         }
     }
 })
@@ -134,17 +167,15 @@ Vue.component('product', {
             <p v-else-if="inventory>0 && inventory<=10">Almost sold out!</p>
             <p v-else>Out of stock!</p>
 
-            <p>Shipping: {{shipping}}</p>
-
             <a v-bind:href="link">More products like this</a>
 
             <h1> {{brand}} {{product}}</h1>
             <h1> {{title}}</h1>
             <p> {{description }}</p>
         </div>
-        <product-tabs :reviews="reviews"></product-tabs>
-
     </div>
+    <product-tabs :reviews="reviews"></product-tabs>
+    <shipping-details-tabs :shipping="shipping" :details="details"></shipping-details-tabs>
     `,
     data() {
         return {
