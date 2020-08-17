@@ -1,5 +1,7 @@
 Vue.config.devtools = true
 
+var event_bus = new Vue()
+
 Vue.component('product-tabs', {
     props: {
         reviews: {
@@ -172,9 +174,6 @@ Vue.component('product', {
         updateProduct(index) {
             this.selected_variant = index
             console.log(index)
-        },
-        addReview(product_review) {
-            this.reviews.push(product_review)
         }
     },
     computed: {
@@ -205,7 +204,13 @@ Vue.component('product', {
             }
             return 2.99
         }
-    }      
+    },
+    mounted() {
+        event_bus.$on('product-review-submitted', product_review => {
+            this.reviews.push(product_review)
+        })
+    }
+
 })
 
 Vue.component('product-review', {
@@ -268,7 +273,7 @@ Vue.component('product-review', {
                     rating: this.rating,
                     recommend: this.recommend
                 }
-                this.$emit("product-review-submitted", product_review)
+                event_bus.$emit("product-review-submitted", product_review)
                 this.name=null
                 this.review=null
                 this.rating=null
