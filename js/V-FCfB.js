@@ -10,7 +10,7 @@ var app = new Vue({
       new_element: '',
       
       test_array_of_objects: [
-          {name: "one", age: 10},
+        {name: "one", age: 10},
         {name: "two", age: 11},
         {name: "three", age: 12},
       ],
@@ -34,7 +34,18 @@ var app = new Vue({
     filters: {
         capitalize(value) {
             return value.toUpperCase()
+        },
+        yfy(value) {
+            if (value.length > 1)
+               return value + "y"
         }
+    },
+    computed: {
+        dasher() {
+            if (this.new_element.length > 1)
+                return "-" + this.new_element + "-"
+        }
+
     }
   }) 
   

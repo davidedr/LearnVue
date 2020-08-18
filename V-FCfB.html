@@ -12,6 +12,7 @@
           {{ greeting }}
         </h1>
         <input v-model="greeting">
+        <p>yfy Filter: {{ greeting | yfy }}</p>
 
         <div v-if="count === 1" :class="{car_red: count === 1}">
           Red
@@ -46,7 +47,8 @@
           <br>
           <input v-model="new_element" v-on:keyup.enter="add_element_to_array">
           <button v-on:click="add_element_to_array">Add</button>
-          <p> {{ new_element | capitalize }} </p>
+          <p>Capitalized: {{ new_element | capitalize }} </p>
+          <p>Dashed: {{ dasher }} </p>
           <ul>
             <li v-for="elem in test_array">{{ elem | capitalize }}</li>
           </ul>
