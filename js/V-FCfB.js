@@ -1,5 +1,21 @@
+Vue.config.devtools = true
+
+Vue.component('elements-list', {
+    props: [
+        'elements'
+    ],
+    template: `
+    <ul>
+        <li v-for="elem in elements"> {{ elem }}</li>
+    </ul>
+    `
+})
+
 var app = new Vue({
     el: '#root',
+    component: [
+        'elements-list'
+    ],
     data: {
       greeting: "Hello, vue world!",
       count: 2,
@@ -30,6 +46,21 @@ var app = new Vue({
             this.new_object_age = 0
             return ele
         }
+    },
+    created() {
+        console.log("created")
+    },
+
+    mounted() {
+        console.log("mounted")
+    },
+
+    updated() {
+        console.log("updated")
+    },
+
+    destroyed() {
+        console.log("destroyed")
     },
     filters: {
         capitalize(value) {

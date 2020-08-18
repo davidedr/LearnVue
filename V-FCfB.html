@@ -64,7 +64,11 @@
             <li v-for="elem in test_array_of_objects">{{ elem.name }} {{ elem.age }}</li>
           </ul>
         </div>
-  
+        <div>
+          <p>Elements list component</p>
+          <elements-list v-bind:elements="test_array"/>
+
+        </div>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/vue"></script>
       <script src="js/V-FCfB.js"></script>
