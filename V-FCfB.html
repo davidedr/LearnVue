@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>V-FCfB</title>
+        <link rel="stylesheet" href="css/style-V-FCfB.css">
+    </head>
+    <body>
+      <p>Thanks to <a href="https://www.youtube.com/watch?v=4deVCNJq3qc"https://www.vuemastery.com/">Learn Vue.js - Full Course for Beginners - 2019</a>
+      
+      <div id="root">
+        <h1>
+          {{ greeting }}
+        </h1>
+        <input v-model="greeting">
+
+        <div v-if="count === 1" :class="{car_red: count === 1}">
+          Red
+        </div>
+        <div v-else-if="count === 2" :class="[count === 2? 'car_green': '']">
+          Green
+        </div>
+        <div v-else-if="count === 3" :class="{car_blue: count === 3}">
+          Blue
+        </div>
+        <div v-else>
+          Nope
+        </div>
+
+        <div v-show="count >= 3">
+          {{ count }}, {{greeting }}
+        </div>
+
+        <div>
+          Sign up!
+          <br>
+          <input v-model="email" :class="{border_red: email.length < 1}"> <button onclick="alert('Signed up!')" v-bind:disabled="email.length < 1">Submit</button>
+          <br>
+          <input v-model="password" :class="[password.length < 1? 'border_red': 'border_green']">
+          <button onclick="alert('Passworded!')" :disabled="password.length < 1">Submit</button>
+          <p v-once>Only once: {{ password }}</p>
+          <p>Updated: {{ password }}</p>
+          </div>
+  
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <script src="js/V-FCfB.js"></script>
+    </body>

@@ -1,0 +1,24 @@
+* {
+    border: 1px solid blue;
+  }
+  
+  .car_red {
+    color: red;
+  }
+  
+  .car_green {
+    color: green;
+  }
+  
+  .car_blue {
+    color: blue;
+  }
+  
+  .border_red {
+    border: 3px solid red;  
+  }
+  
+  .border_green {
+    border: 3px solid green;  
+  }
+  
