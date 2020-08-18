@@ -44,11 +44,22 @@
         <div>
           Looping in Vue
           <br>
-          <input v-model="new_element">
+          <input v-model="new_element" v-on:keyup.enter="add_element_to_array">
           <button v-on:click="add_element_to_array">Add</button>
-          <p> {{ new_element }} </p>
+          <p> {{ new_element | capitalize }} </p>
           <ul>
-            <li v-for="elem in test_array">{{ elem }}</li>
+            <li v-for="elem in test_array">{{ elem | capitalize }}</li>
+          </ul>
+        </div>
+
+        <div>
+          Looping in Vue, array of objects
+          <br>
+          <input v-model="new_object_name"><input v-model="new_object_age">
+          <button v-on:click="add_element_to_array_of_objects">Add OBJECT</button>
+          <br>
+          <ul>
+            <li v-for="elem in test_array_of_objects">{{ elem.name }} {{ elem.age }}</li>
           </ul>
         </div>
   

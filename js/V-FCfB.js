@@ -6,7 +6,7 @@ var app = new Vue({
       email: '',
       password: 'default',
       
-      test_array: [1, 2, 3, 4],
+      test_array: ['a', 'b', 'c', 'd'],
       new_element: '',
       
       test_array_of_objects: [
@@ -19,7 +19,21 @@ var app = new Vue({
     },
     methods: {
         add_element_to_array() {
-            return this.test_array.push(this.new_element)
+            var ele = this.test_array.push(this.new_element)
+            this.new_element = ''
+            return ele
+        },
+
+        add_element_to_array_of_objects() {
+            var ele = this.test_array_of_objects.push({name: this.new_object_name, age:this.new_object_age})
+            this.new_object_name=''
+            this.new_object_age = 0
+            return ele
+        }
+    },
+    filters: {
+        capitalize(value) {
+            return value.toUpperCase()
         }
     }
   }) 
