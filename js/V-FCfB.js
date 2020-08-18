@@ -17,10 +17,10 @@ var app = new Vue({
       new_object_name: '',
       new_object_age: 0
     },
-    metohds: {
+    methods: {
         add_element_to_array() {
-        return this.test_array.push(this.new_element)
-      }
+            return this.test_array.push(this.new_element)
+        }
     }
   }) 
   

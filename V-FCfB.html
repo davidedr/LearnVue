@@ -39,7 +39,18 @@
           <button onclick="alert('Passworded!')" :disabled="password.length < 1">Submit</button>
           <p v-once>Only once: {{ password }}</p>
           <p>Updated: {{ password }}</p>
-          </div>
+        </div>
+
+        <div>
+          Looping in Vue
+          <br>
+          <input v-model="new_element">
+          <button v-on:click="add_element_to_array">Add</button>
+          <p> {{ new_element }} </p>
+          <ul>
+            <li v-for="elem in test_array">{{ elem }}</li>
+          </ul>
+        </div>
   
       </div>
       <script src="https://cdn.jsdelivr.net/npm/vue"></script>
